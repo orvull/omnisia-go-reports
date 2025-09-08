@@ -1,0 +1,65 @@
+syntax = "proto3";
+package admin_auth;
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/orvull/omnisia-go-reports/gen/admin_auth;admin_auth";
+
+
+enum AuthError{
+LoginAlreadyInUse = 0;
+UserNotFound = 1;
+InvalidLogin = 2;
+InvalidPassword = 3;
+InvalidToken = 4;
+StaleToken = 5;
+}
+
+
+message AdminAuthRegisterUserGrpcRequest{ string Login = 1; string Password = 2; }
+message AdminAuthRegisterUserGrpcResponse{ optional AuthError Error = 1; optional string AuthToken = 2; optional string RefreshToken = 3; }
+
+
+message AdminAuthUpdatePasswordGrpcRequest{ string Login = 1; string NewPassword = 2; }
+message AdminAuthUpdatePasswordGrpcResponse{ optional AuthError Error = 1; optional string AuthToken = 2; optional string RefreshToken = 3; }
+
+
+message AdminAuthenticateGrpcRequest{ string Login = 1; string Password = 2; }
+message AdminAuthenticateGrpcResponse{ optional AuthError Error = 1; optional string AuthToken = 2; optional string RefreshToken = 3; }
+
+
+message AdminAuthRefreshGrpcRequest{ string RefreshToken = 1; }
+message AdminAuthRefreshGrpcResponse{ optional AuthError Error = 1; optional string AuthToken = 2; optional string RefreshToken = 3; }
+
+
+message AdminAuthValidateJwtRequest{ string AuthToken = 1; }
+message AdminAuthValidateJwtResponse{ optional AuthError Error = 1; }
+
+
+message AdminAuthCreateGroupGrpcRequest{ string Name = 1; string Description = 2; }
+message AdminAuthCreateGroupGrpcResponse{ optional string GroupId = 1; }
+
+
+message AdminAuthCreatePermissionGrpcRequest{ string Name = 1; string Description = 2; }
+message AdminAuthCreatePermissionGrpcResponse{ optional string PermissionId = 1; }
+
+
+message AdminAuthCreateScopeGrpcRequest{ string Name = 1; string Description = 2; }
+message AdminAuthCreateScopeGrpcResponse{ optional string ScopeId = 1; }
+
+
+message AdminAuthGoogleGrpcRequest{ string IdToken = 1; }
+message AdminAuthGoogleGrpcResponse{ optional AuthError Error = 1; optional string AuthToken = 2; optional string RefreshToken = 3; }
+
+
+service AdminAuthService {
+rpc Register(AdminAuthRegisterUserGrpcRequest) returns (AdminAuthRegisterUserGrpcResponse);
+rpc AuthenticateGoogle(AdminAuthGoogleGrpcRequest) returns (AdminAuthGoogleGrpcResponse);
+rpc Refresh(AdminAuthRefreshGrpcRequest) returns (AdminAuthRefreshGrpcResponse);
+rpc UpdatePassword(AdminAuthUpdatePasswordGrpcRequest) returns (AdminAuthUpdatePasswordGrpcResponse);
+rpc Authenticate(AdminAuthenticateGrpcRequest) returns (AdminAuthenticateGrpcResponse);
+rpc CreateGroup(AdminAuthCreateGroupGrpcRequest) returns (AdminAuthCreateGroupGrpcResponse);
+rpc CreatePermission(AdminAuthCreatePermissionGrpcRequest) returns (AdminAuthCreatePermissionGrpcResponse);
+rpc CreateScope(AdminAuthCreateScopeGrpcRequest) returns (AdminAuthCreateScopeGrpcResponse);
+rpc Validate(AdminAuthValidateJwtRequest) returns (AdminAuthValidateJwtResponse);
+rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
