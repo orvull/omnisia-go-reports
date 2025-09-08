@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"google.golang.org/protobuf/types/known/emptypb"
 
 	"github.com/orvull/omnisia-go-reports/gen/admin_auth"
 	"github.com/orvull/omnisia-go-reports/internal/auth"
@@ -58,8 +59,8 @@ func New(store Store, signer auth.JWTSigner, refreshTTL time.Duration, gv google
 
 // ---------- RPCs ----------
 
-func (s *Service) Ping(ctx context.Context, _ *admin_auth.Empty) (*admin_auth.Empty, error) {
-	return &admin_auth.Empty{}, nil
+func (s *Service) Ping(ctx context.Context, _ *emptypb.Empty) (*emptypb.Empty, error) {
+	return &emptypb.Empty{}, nil
 }
 
 func (s *Service) Register(ctx context.Context, req *admin_auth.AdminAuthRegisterUserGrpcRequest) (*admin_auth.AdminAuthRegisterUserGrpcResponse, error) {

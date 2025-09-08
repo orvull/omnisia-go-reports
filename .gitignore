@@ -1,0 +1,69 @@
+# ── Go build artifacts ───────────────────────────────────────────────
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.a
+*.test
+*.out
+*.bin
+
+# Common build dirs
+/bin/
+/build/
+/dist/
+/release/
+/target/
+
+# ── Go module/workspace/caches (keep go.mod & go.sum tracked) ────────
+# If you use Go workspaces locally, don’t commit them by default
+go.work
+go.work.sum
+.gocache/
+.gopath/
+
+# ── Coverage, profiles, traces ───────────────────────────────────────
+*.cover
+*.cov
+coverage.*
+*.lcov
+*.prof
+*.pprof
+cpu.prof
+mem.prof
+heap.prof
+block.prof
+trace.out
+profile.out
+
+# ── Logs & temp ──────────────────────────────────────────────────────
+*.log
+logs/
+tmp/
+*.swp
+*.swo
+*~
+*.bak
+
+# ── Editors/IDEs ─────────────────────────────────────────────────────
+# VS Code: ignore the folder but keep common project config files useful to share
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+
+# JetBrains / GoLand
+.idea/
+*.iml
+
+# ── OS cruft ─────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Optional: generated code (protobuf, gRPC, etc.) ──────────────────
+# If you DO NOT want generated files in git, uncomment these:
+# /gen/
+# **/*.pb.go
+# **/*_grpc.pb.go

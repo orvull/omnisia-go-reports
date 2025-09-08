@@ -7,12 +7,12 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/orvull/omnisia-go-reports/auth"
-	"github.com/orvull/omnisia-go-reports/config"
 	"github.com/orvull/omnisia-go-reports/gen/admin_auth"
-	"github.com/orvull/omnisia-go-reports/google"
-	"github.com/orvull/omnisia-go-reports/server"
-	"github.com/orvull/omnisia-go-reports/storage"
+	"github.com/orvull/omnisia-go-reports/internal/auth"
+	"github.com/orvull/omnisia-go-reports/internal/config"
+	"github.com/orvull/omnisia-go-reports/internal/google"
+	"github.com/orvull/omnisia-go-reports/internal/server"
+	"github.com/orvull/omnisia-go-reports/internal/storage"
 )
 
 func main() {
